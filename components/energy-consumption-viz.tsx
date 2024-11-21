@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { forceSimulation, forceCollide, forceCenter, forceManyBody } from 'd3-force'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import Image from 'next/image'
 
 // Leaflet icon setup
 delete L.Icon.Default.prototype._getIconUrl
@@ -434,7 +434,7 @@ export function EnergyConsumptionVizComponent() {
               <TableCell>
                 <div className="w-6 h-6">
                   {source.icon && (
-                    <img 
+                    <Image 
                       src={source.icon} 
                       alt={`${source.source} icon`}
                       className="w-6 h-6"
