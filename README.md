@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Let's take a moment to think about how much electricity you use in a day. For example, if you turn on an 18-watt light bulb for 2 hours, it will consume 36 watt-hours.
 
-## Getting Started
+When we look at electricity use around the world, North America stands out for using significantly more electricity compared to other regions. For instance, electricity use in Canada is particularly high, likely due to their long, cold winters.
 
-First, run the development server:
+I created this project using React.js and Cursor AI. As a designer in this new era, I can bring my ideas to life and implement them in practical, real-world applications.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Problem and story behind
+    1. We don't check our energy data daily, nor do we feel the need to.
+    2. We're unaware of how much energy we use each day, making it difficult to identify which appliances are driving up our electricity bills.
+2. The concept of digital pet
+    1. inspiration
+        1. Energy Monster was inspired by my desire to create an engaging product that visualizes home energy consumption data. I wanted to make it playful, so I incorporated the concept of Tamagotchi—the vintage Japanese handheld digital pets from the '90s that kids loved to care for. This combination creates an engaging way to monitor your daily energy usage.
+        2. The app can be installed anywhere—on your phone, laptop, smart home screen, or even a touchscreen refrigerator—as a PWA application or screen protection.
+3. Energy monster's concept
+    1. The rule
+        1. The monster's color depends on its appliance **category: red for large appliances like refrigerators, blue for medium appliances like hair dryers, and yellow for small appliances like phone chargers
+    2. How the monster interacts
+        1. The monster gets hungry every 4 hours, and their size increases with energy consumption.
+        2. For example, if a refrigerator uses 2380W power per day and grows to 3x its initial size, you'll need to feed it 3 energy food portions to keep it full and happy.
+    3. How to get energy food
+        1. Users can earn energy food through workouts, taking public transit to work/school, or donating to environmental organizations.
+        2. The product provides energy food based on power-saving usage levels—if you exceed these levels, you can earn food through the methods mentioned above.
+    4. The ranking board offers a clear, quick overview of usage patterns
+4. Final thoughts + next steps
+    1. Feedback: Adding names for the monsters would help users feel more connected to the game.
+    2. Can easily integrate real-time energy data through API from a Home Hub.
