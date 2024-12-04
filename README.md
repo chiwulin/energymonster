@@ -13,7 +13,7 @@ I created this project using React.js and Cursor AI. As a designer in this new e
         2. The app can be installed anywhere—on your phone, laptop, smart home screen, or even a touchscreen refrigerator—as a PWA application or screen protection.
 3. Energy monster's concept
     1. The rule
-        1. The monster's color depends on its appliance **category: red for large appliances like refrigerators, blue for medium appliances like hair dryers, and yellow for small appliances like phone chargers
+        1. The monster's color depends on its appliance category: red for large appliances like refrigerators, blue for medium appliances like hair dryers, and yellow for small appliances like phone chargers
     2. How the monster interacts
         1. The monster gets hungry every 4 hours, and their size increases with energy consumption.
         2. For example, if a refrigerator uses 2380W power per day and grows to 3x its initial size, you'll need to feed it 3 energy food portions to keep it full and happy.
