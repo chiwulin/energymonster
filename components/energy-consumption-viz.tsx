@@ -49,8 +49,19 @@ const initialAppliances = [
   { id: 12, name: 'Hair Dryer', startTime: new Date(), duration: 0, energyConsumption: 1800, state: BUBBLE_STATES.HAPPY, lastFed: new Date(), color: BUBBLE_COLORS.RED },
 ]
 
+interface Appliance {
+  id: number
+  name: string
+  startTime: Date
+  duration: number
+  energyConsumption: number
+  state: string
+  lastFed: Date
+  color: string
+}
+
 // Custom hook to simulate real-time updates
-const useSimulatedUpdates = (initialData) => {
+const useSimulatedUpdates = (initialData: Appliance[]) => {
   const [data, setData] = useState(initialData)
 
   useEffect(() => {
@@ -58,9 +69,8 @@ const useSimulatedUpdates = (initialData) => {
       setData(prevData =>
         prevData.map(appliance => {
           // 計算合理的波動範圍 (基準值的 ±10%)
-          const baseConsumption = initialAppliances.find(
-            a => a.id === appliance.id
-          ).energyConsumption
+          const baseAppliance = initialAppliances.find(a => a.id === appliance.id)
+          const baseConsumption = baseAppliance ? baseAppliance.energyConsumption : appliance.energyConsumption
           const maxVariation = baseConsumption * 0.1
 
           // 隨機定是增加還是減
@@ -127,7 +137,7 @@ const calculateBubbleSize = (energyConsumption: number) => {
 }
 
 // Bubble component
-const Bubble = ({ appliance, x, y }) => {
+const Bubble = ({ appliance, x, y }: { appliance: Appliance, x: number, y: number }) => {
   const [state, setState] = useState(appliance.state)
   const [isFeeding, setIsFeeding] = useState(false)
   const [lastFed, setLastFed] = useState(appliance.lastFed)
@@ -290,9 +300,9 @@ const Bubble = ({ appliance, x, y }) => {
 export function EnergyConsumptionVizComponent() {
   const appliances = useSimulatedUpdates(initialAppliances)
   const energySources = useEnergySourceData()
-  const [nodes, setNodes] = useState([])
-  const simulationRef = useRef(null)
-  const containerRef = useRef(null)
+  const [nodes, setNodes] = useState<any[]>([])
+  const simulationRef = useRef<any>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const frameRef = useRef(0) // 用于 requestAnimationFrame
 
   useEffect(() => {
@@ -311,10 +321,10 @@ export function EnergyConsumptionVizComponent() {
 
     simulationRef.current = forceSimulation(initializedAppliances)
       .force('charge', forceManyBody()
-        .strength(d => -Math.pow(calculateBubbleSize(d.energyConsumption), 0.5) * 2) // Increased repulsion
+        .strength((d: any) => -Math.pow(calculateBubbleSize(d.energyConsumption), 0.5) * 2) // Increased repulsion
       )
       .force('collide', forceCollide()
-        .radius(d => calculateBubbleSize(d.energyConsumption) / 2 + 5)
+        .radius((d: any) => calculateBubbleSize(d.energyConsumption) / 2 + 5)
         .strength(0.8)
       )
       .force('center', forceCenter(width / 2, height / 2)
@@ -330,7 +340,7 @@ export function EnergyConsumptionVizComponent() {
     const updateNodesPosition = () => {
       if (simulationRef.current) {
         // Add continuous gentle random force for "drifting" behavior
-        simulationRef.current.nodes().forEach(node => {
+        simulationRef.current.nodes().forEach((node: any) => {
           // Random wander force
           node.vx += (Math.random() - 0.5) * 0.2;
           node.vy += (Math.random() - 0.5) * 0.2;
@@ -351,7 +361,7 @@ export function EnergyConsumptionVizComponent() {
         const currentNodes = simulationRef.current.nodes()
 
         // Hard clamp as safety net
-        currentNodes.forEach(node => {
+        currentNodes.forEach((node: any) => {
           const radius = calculateBubbleSize(node.energyConsumption) / 2
           node.x = Math.max(radius, Math.min(width - radius, node.x))
           node.y = Math.max(radius, Math.min(height - radius, node.y))
@@ -454,9 +464,9 @@ export function EnergyConsumptionVizComponent() {
               <TableCell>
                 <div className="w-6 h-6">
                   <div className="w-6 h-6">
-                    {ICON_MAPPING[source.icon] && (
+                    {ICON_MAPPING[source.icon as keyof typeof ICON_MAPPING] && (
                       (() => {
-                        const Icon = ICON_MAPPING[source.icon];
+                        const Icon = ICON_MAPPING[source.icon as keyof typeof ICON_MAPPING];
                         return <Icon className="w-6 h-6" />
                       })()
                     )}
